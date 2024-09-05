@@ -1,4 +1,4 @@
-package lesson_oop;
+package lesson07_oop;
 
 public class CarMain {
 	public static void main(String[] args) {
