@@ -6,11 +6,11 @@ public class StackMain {
 	public static void main(String[] args) {
 		Stack<String> stack = new Stack<>();
 		for(int i =0; i<100_000; i++) {
-			stack.push("ìƒˆë˜¥ì´");
+			stack.push("»õ¶ËÀÌ");
 		}
-//		stack.push("ìƒˆë˜¥ì´");
-//		stack.push("ì—ì–´ì»¨");
-//		stack.push("ì¸„ë¥´");
+//		stack.push("»õ¶ËÀÌ");
+//		stack.push("¿¡¾îÄÁ");
+//		stack.push("Ãò¸£");
 		
 		System.out.println(stack.peek());
 		System.out.println(stack.size());
