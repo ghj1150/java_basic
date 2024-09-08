@@ -43,15 +43,21 @@ public class StudentService {
 	// 학생 이름, 점수 수정
 	void modify() {
 //		System.out.println("수정하기");
-		int no = StudentUtils.nextInt("수정할 학번");
-		String name = StudentUtils.nextLine("이름");
+		int modify = StudentUtils.nextInt("수정할 학번");
+		
+  for(int i = 0; i< students.length; i++){
+  if(modify == students[i].no){
+  
+  String name = StudentUtils.nextLine("이름");
 		int kor = StudentUtils.nextInt("국어");
 		int eng = StudentUtils.nextInt("영어");
 		int mat = StudentUtils.nextInt("수학");
+
+  }
+	}
+ 
+			
 		
-		for(int i = 0; i< students.length; i++) {
-			students[i] = 
-		}
 		
 		
 
