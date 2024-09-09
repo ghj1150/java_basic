@@ -56,10 +56,10 @@ public class StudentService {
 			System.out.println("입력한 학번은 존재하지 않습니다.");
 			return;
 		}
-		s.name = nextLine("이름");
-		s.kor = nextInt("국어");
-		s.eng = nextInt("영어");
-		s.mat = nextInt("수학");
+		s.setName(nextLine("이름"));
+		s.setKor(nextInt("국어"));
+		s.setEng(nextInt("영어"));
+		s.setMat(nextInt("수학"));
 
 	}
 
