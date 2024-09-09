@@ -85,7 +85,7 @@ public class StudentService {
 		Student student = null;
 		int no = nextInt("학번");
 		for (int i = 0; i < cnt; i++) {
-			if (students[i].no == no) {
+			if (students[i].getNo() == no) {
 				student = students[i];
 			}
 		}
