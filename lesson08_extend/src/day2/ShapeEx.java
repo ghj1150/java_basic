@@ -45,7 +45,7 @@ class Circle extends Shape {
 
 	@Override
 	public String toString() {
-		return "Circle [r=" + r + ", type=" + type + "]";
+		return "Shape [r=" + r + ", type=" + type + "]";
 	}
 
 }
