@@ -1,9 +1,9 @@
 package aaa;
 
-public class Rectangle extends Shape {
-	int width, height;
+public abstract class Rectangle extends Shape {
+	private int width, height;
 
-	Rectangle(int width, int height) {
+	public Rectangle(int width, int height) {
 		super("사각형");
 		this.width = width;
 		this.height = height;
