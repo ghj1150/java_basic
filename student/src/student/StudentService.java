@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 // Logic 기능수행
 public class StudentService {
-	Student[] students = new Student[5];
-	int cnt;
+	private Student[] students = new Student[5];
+	private int cnt;
 
 	{
 		students[cnt++] = new Student(1, "새똥이", 80, 90, 100);
@@ -16,7 +16,7 @@ public class StudentService {
 	}
 
 	// 학생 등록
-	void add() {
+	public void add() {
 //		int no = StudentUtils.nextInt("학번");
 //		String name = StudentUtils.nextLine("이름");
 //		int kor = StudentUtils.nextInt("국어 점수");
@@ -36,18 +36,17 @@ public class StudentService {
 	}
 
 	// 학생 목록 조회
-	void list() {
+	public void list() {
 //		System.out.println("list()");
 		System.out.println("학번   이름   국어   영어   수학   총점   평균");
 		System.out.println("==============================================");
 		for (int i = 0; i < cnt; i++) {
 			System.out.println(students[i]);
 		}
-		System.out.println(Arrays.toString(students));
 	}
 
 	// 학생 이름, 점수 수정
-	void modify() {
+	public void modify() {
 		// 1. 학번 입력
 		// 2. 학번을 통한 탐색(배열) >> 학생
 		Student s = findByNo();
@@ -64,7 +63,7 @@ public class StudentService {
 	}
 
 	// 학생 삭제
-	void remove() {
+	public void remove() {
 		Student s = findByNo();
 		// 3. 이름, 국어, 영어, 수학 점수 변경
 		if (s == null) {
@@ -81,7 +80,7 @@ public class StudentService {
 		}
 	}
 
-	Student findByNo() {
+	private Student findByNo() {
 		Student student = null;
 		int no = nextInt("학번");
 		for (int i = 0; i < cnt; i++) {
