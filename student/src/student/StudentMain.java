@@ -10,26 +10,22 @@ public class StudentMain {
 		StudentService ss = new StudentService();
 		while (true) {
 			try {
-				int input = StudentUtils.nextInt("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료");
+				int input = ss.checkRange(StudentUtils.nextInt("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료"), 1, 5);
 				switch (input) {
 				case 1:
 					ss.list();
 					break;
 				case 2:
-//					try {
-						ss.add();
-						break;
-//					if(num < 0 || num > 100)	{
-//						throw new RangeException(0, 100);
-//					}
-//					} catch (Exception e) {
-//						System.out.println("0이상 100이하의 값을 입력하세요");
-//					}
+					ss.add();
+					ss.cloneAndSort();
+					break;
 				case 3:
 					ss.modify();
+					ss.cloneAndSort();
 					break;
 				case 4:
 					ss.remove();
+					ss.cloneAndSort();
 					break;
 				case 5:
 					System.out.println("bye");
@@ -37,8 +33,10 @@ public class StudentMain {
 				default:
 					break;
 				}
-			} catch (Exception e) {
-				System.out.println("잘못입력하였습니다");
+			} catch (NumberFormatException e) {
+				System.out.println("정확한 숫자를 입력하세요");
+			} catch (RuntimeException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}
