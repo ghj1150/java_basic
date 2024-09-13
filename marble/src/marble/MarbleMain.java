@@ -5,5 +5,8 @@ public class MarbleMain {
 		System.out.println("어서오세요 모두의 마블입니다");
 		GameService service = new GameService();
 		service.play();
+//		System.out.println(Arrays.toString(service.locals));
+//		service.play();
+
 	}
 }
