@@ -9,12 +9,17 @@ public class Exer {
 		String str = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%AA%A8%EB%91%90%EC%9D%98+%EB%A7%88%EB%B8%94+%EB%A3%B0";
 		
 		// 1. 프로토콜  https
-		// 2. 도메인	search.naver.com
-		// 3. 파일네임	search.naver
-		// 4. 쿼리스트링 where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%AA%A8%EB%91%90%EC%9D%98+%EB%A7%88%EB%B8%94+%EB%A3%B0
+		System.out.println(str.substring(0, str.indexOf(":")));
+		// 2. 도메인 search.naver.com
+		System.out.println(str.substring(str.indexOf("s", 5), str.indexOf("/", 8)));
+		// 3. 파일네임 search.naver
+		System.out.println(str.substring(str.indexOf("s", 9), str.indexOf("?")));
+		// 4. 쿼리스트링
+		// where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%AA%A8%EB%91%90%EC%9D%98+%EB%A7%88%EB%B8%94+%EB%A3%B0
+		System.out.println(str.substring(str.indexOf("w")));
 		// where :: nexearch
 		// sm :: top_hty
-		
+
 		// 현재 위의 문자열은 5쌍의 key, value
 	}
 }
