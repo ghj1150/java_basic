@@ -30,7 +30,7 @@ public class StudentService {
 //		students[cnt++] = new Student(4, "개똥이", 77, 66, 77);
 
 //		totalSortedStudents = students.clone();
-//		cloneAndSort();
+		cloneAndSort();
 
 	}
 
@@ -179,17 +179,17 @@ public class StudentService {
 		nameSortedStudents = new ArrayList<Student>(students);
 		totalSortedStudents = new ArrayList<Student>(students);
 
-//		noSortedStudents.sort((o1, o2) -> o1.getNo() - o2.getNo());
+//		noSortedStudents.sort((o1, o2) -> o2.getNo() - o1.getNo());
 
 		noSortedStudents.sort( 
 				(o1, o2) ->
-					o1.getNo() - o2.getNo()
+					o2.getNo() - o1.getNo()
 	);
 		
 		
 		
-		nameSortedStudents.sort((o1, o2) -> o1.getName().hashCode() - o2.getName().hashCode());
-		totalSortedStudents.sort((o1, o2) -> o1.get);
+		nameSortedStudents.sort((o1, o2) -> o2.getName().hashCode() - o1.getName().hashCode());
+		totalSortedStudents.sort((o1, o2) -> o2.total() - o1.total());
 //		sort(0, noSortedStudents);
 //		sort(1, nameSortedStudents);
 ////		sort(2, totalSortedStudents);
