@@ -7,6 +7,7 @@ import java.util.Arrays;
 // Logic 기능수행
 public class StudentService {
 	private Student[] students = new Student[5];
+//	private List<Student> students = new ArrayList<Student>();
 	private Student[] totalSortedStudents;
 	private Student[] noSortedStudents;
 	private Student[] nameSortedStudents;
@@ -21,7 +22,7 @@ public class StudentService {
 
 //		totalSortedStudents = students.clone();
 		cloneAndSort();
-		
+
 	}
 
 	// 학생 등록
