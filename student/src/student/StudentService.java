@@ -80,7 +80,7 @@ public class StudentService {
 		}
 		System.out.println("학번   이름   국어   영어   수학   총점   평균");
 		System.out.println("==============================================");
-		for (int i = 0; i < students.size(); i++) {
+		for (int i = 0; i < tmp.size(); i++) {
 //			System.out.println(students[i]);
 			System.out.println(tmp.get(i));
 		}
@@ -112,14 +112,16 @@ public class StudentService {
 			System.out.println("입력한 학번은 존재하지 않습니다.");
 			return;
 		}
+		
+		students.remove(s);
 
-		for (int i = 0; i < students.size(); i++) {
-			if (students.get(i) == s) {
-				// 삭제
+//		for (int i = 0; i < students.size(); i++) {
+//			if (students.get(i) == s) {
+//				// 삭제
 //				System.arraycopy(students, i + 1, students, i, cnt-- - i - 1);
-				break;
-			}
-		}
+//				break;
+//			}
+//		}
 	}
 
 	private Student findBy(int no) {
@@ -183,17 +185,18 @@ public class StudentService {
 
 		noSortedStudents.sort( 
 				(o1, o2) ->
-					o2.getNo() - o1.getNo()
+					o1.getNo() - o2.getNo()
 	);
 		
 		
 		
-		nameSortedStudents.sort((o1, o2) -> o2.getName().hashCode() - o1.getName().hashCode());
+		nameSortedStudents.sort((o1, o2) -> o1.getName().hashCode() - o2.getName().hashCode());
 		totalSortedStudents.sort((o1, o2) -> o2.total() - o1.total());
 //		sort(0, noSortedStudents);
 //		sort(1, nameSortedStudents);
 ////		sort(2, totalSortedStudents);
 	}
+
 
 //	private void sort(int type, Student[] target) {
 //		Student[] arr = target;
