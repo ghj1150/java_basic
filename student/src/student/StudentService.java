@@ -46,9 +46,9 @@ public class StudentService {
 //			throw new RuntimeException("중복되지 않는 학번을 입력하세요");
 //		}
 		String name = checkName(next("이름", String.class, null, ""));
-		int kor = checkRange(next("국어", Integer.class, n -> n > 0 && n <= 100, "잘못입력"));
-		int eng = checkRange(next("영어", Integer.class, n -> n > 0 && n <= 100, "잘못입력"));
-		int mat = checkRange(next("수학", Integer.class, n -> n > 0 && n <= 100, "잘못입력"));
+		int kor = next("국어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
+		int eng = next("영어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
+		int mat = next("수학", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
 
 //		if (cnt == students.length) {
 //			students = Arrays.copyOf(students, students.length * 2);
@@ -60,7 +60,7 @@ public class StudentService {
 	// 학생 목록 조회
 	public void list() {
 //		System.out.println("list()");
-		int input = checkRange(next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, n -> n > 0 && n <= 4, "잘못입력"), 1, 4);
+		int input = next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, n -> n > 0 && n <= 4, "잘못입력");
 		List<Student> tmp = null;
 		switch (input) {
 		case 1:
@@ -179,16 +179,16 @@ public class StudentService {
 	 * @param end   종료 값
 	 * @return 원래의 값
 	 */
-	int checkRange(int num, int start, int end) throws RangeException {
-		if (num < start || num > end) {
-			throw new RangeException(start, end);
-		}
-		return num;
-	}
-
-	int checkRange(int num) throws RangeException {
-		return checkRange(num, 0, 100);
-	}
+//	int checkRange(int num, int start, int end) throws RangeException {
+//		if (num < start || num > end) {
+//			throw new RangeException(start, end);
+//		}
+//		return num;
+//	}
+//
+//	int checkRange(int num) throws RangeException {
+//		return checkRange(num, 0, 100);
+//	}
 
 	// 정렬
 	public void cloneAndSort() {
