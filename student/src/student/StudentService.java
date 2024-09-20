@@ -41,14 +41,14 @@ public class StudentService {
 //		int kor = StudentUtils.nextInt("국어 점수");
 //		int eng = StudentUtils.nextInt("영어 점수");
 //		int mat = StudentUtils.nextInt("수학 점수");
-		int no = nextInt("학번");
-		if (findBy(no) != null) {
-			throw new RuntimeException("중복되지 않는 학번을 입력하세요");
-		}
-		String name = checkName(nextLine("이름"));
-		int kor = checkRange(nextInt("국어"));
-		int eng = checkRange(nextInt("영어"));
-		int mat = checkRange(nextInt("수학"));
+		int no = next("학번", Integer.class, null, "중복되지 않는 학번을 입력하세요");
+//		if (findBy(no) != null) {
+//			throw new RuntimeException("중복되지 않는 학번을 입력하세요");
+//		}
+		String name = checkName(next("이름", String.class, null, ""));
+		int kor = checkRange(next("국어", Integer.class, n -> n > 0 && n <= 100, "잘못입력"));
+		int eng = checkRange(next("영어", Integer.class, n -> n > 0 && n <= 100, "잘못입력"));
+		int mat = checkRange(next("수학", Integer.class, n -> n > 0 && n <= 100, "잘못입력"));
 
 //		if (cnt == students.length) {
 //			students = Arrays.copyOf(students, students.length * 2);
@@ -60,7 +60,7 @@ public class StudentService {
 	// 학생 목록 조회
 	public void list() {
 //		System.out.println("list()");
-		int input = checkRange(nextInt("1. 입력순 2. 학번순 3. 이름순 4. 석차순"), 1, 4);
+		int input = checkRange(next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, n -> n > 0 && n <= 4, "잘못입력"), 1, 4);
 		List<Student> tmp = null;
 		switch (input) {
 		case 1:
@@ -90,7 +90,7 @@ public class StudentService {
 	public void modify() {
 		// 1. 학번 입력
 		// 2. 학번을 통한 탐색(배열) >> 학생
-		Student s = findBy(nextInt("학번"));
+		Student s = findBy(next("학번", Integer.class, null, ""));
 		// 3. 이름, 국어, 영어, 수학 점수 변경
 		if (s == null) {
 			System.out.println("입력한 학번은 존재하지 않습니다.");
@@ -109,10 +109,13 @@ public class StudentService {
 //			}
 //			return true;
 //		}, "정확한 이름의 조건을 입력하세요");
+		int kor = next("국어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
+		int eng = next("영어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
+		int mat = next("수학", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
 		s.setName(name);
-		s.setKor(checkRange(nextInt("국어")));
-		s.setEng(checkRange(nextInt("영어")));
-		s.setMat(checkRange(nextInt("수학")));
+		s.setKor(kor);
+		s.setEng(eng);
+		s.setMat(mat);
 
 	}
 

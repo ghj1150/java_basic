@@ -10,7 +10,8 @@ public class StudentMain {
 		StudentService ss = new StudentService();
 		while (true) {
 			try {
-				int input = ss.checkRange(StudentUtils.nextInt("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료"), 1, 5);
+				int input = ss.checkRange(StudentUtils.next("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료", Integer.class, null, ""),
+						1, 5);
 				switch (input) {
 				case 1:
 					ss.list();
