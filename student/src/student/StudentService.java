@@ -45,10 +45,10 @@ public class StudentService {
 //		if (findBy(no) != null) {
 //			throw new RuntimeException("중복되지 않는 학번을 입력하세요");
 //		}
-		String name = checkName(next("이름", String.class, null, ""));
-		int kor = next("국어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
-		int eng = next("영어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
-		int mat = next("수학", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
+		String name = next("이름", String.class, null, "");
+		int kor = next("국어", Integer.class, n -> n >= 0 && n <= 100, "잘못입력");
+		int eng = next("영어", Integer.class, n -> n >= 0 && n <= 100, "잘못입력");
+		int mat = next("수학", Integer.class, n -> n >= 0 && n <= 100, "잘못입력");
 
 //		if (cnt == students.length) {
 //			students = Arrays.copyOf(students, students.length * 2);
@@ -109,9 +109,9 @@ public class StudentService {
 //			}
 //			return true;
 //		}, "정확한 이름의 조건을 입력하세요");
-		int kor = next("국어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
-		int eng = next("영어", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
-		int mat = next("수학", Integer.class, n -> n > 0 && n <= 100, "잘못입력");
+		int kor = next("국어", Integer.class, n -> n >= 0 && n <= 100, "잘못입력");
+		int eng = next("영어", Integer.class, n -> n >= 0 && n <= 100, "잘못입력");
+		int mat = next("수학", Integer.class, n -> n >= 0 && n <= 100, "잘못입력");
 		s.setName(name);
 		s.setKor(kor);
 		s.setEng(eng);
@@ -121,7 +121,7 @@ public class StudentService {
 
 	// 학생 삭제
 	public void remove() {
-		Student s = findBy(nextInt("학번"));
+		Student s = findBy(next);
 		// 3. 이름, 국어, 영어, 수학 점수 변경
 		if (s == null) {
 			System.out.println("입력한 학번은 존재하지 않습니다.");
@@ -156,20 +156,20 @@ public class StudentService {
 	 * @param name 학생의 이름
 	 */
 
-	String checkName(String name) {
-		char[] chs = name.toCharArray();
-//		String s = new String(chs);
-		if (chs.length < 2 || chs.length > 4) {
-			throw new RuntimeException("이름은 2글자에서 4글자 사이로 입력하세요");
-		}
-		for (char c : chs) {
-			if (c < '가' || c > '힣') {
-				throw new RuntimeException("한글로 구성된 이름으로 작성하세요");
-			}
-		}
-		return name;
-
-	}
+//	String checkName(String name) {
+//		char[] chs = name.toCharArray();
+////		String s = new String(chs);
+//		if (chs.length < 2 || chs.length > 4) {
+//			throw new RuntimeException("이름은 2글자에서 4글자 사이로 입력하세요");
+//		}
+//		for (char c : chs) {
+//			if (c < '가' || c > '힣') {
+//				throw new RuntimeException("한글로 구성된 이름으로 작성하세요");
+//			}
+//		}
+//		return name;
+//
+//	}
 
 	/**
 	 * 범위에 대한 탐색 start 이상, end 이하의 조건을 만족하지 않을 경우 예외 발생

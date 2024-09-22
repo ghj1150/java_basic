@@ -1,6 +1,7 @@
 package student;
 
 import java.util.Scanner;
+import static student.StudentUtils.*;
 
 public class StudentMain {
 	public static void main(String[] args) {
@@ -10,8 +11,7 @@ public class StudentMain {
 		StudentService ss = new StudentService();
 		while (true) {
 			try {
-				int input = ss.checkRange(StudentUtils.next("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료", Integer.class, null, ""),
-						1, 5);
+				int input = next("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료", Integer.class, n -> n > 0 && n < 6, "잘못입력");
 				switch (input) {
 				case 1:
 					ss.list();
@@ -41,4 +41,5 @@ public class StudentMain {
 			}
 		}
 	}
+
 }
