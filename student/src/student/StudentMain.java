@@ -1,28 +1,31 @@
 package student;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class StudentMain {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		// UI
 		// Create Read Update Delete
 		// 배열 길이 늘리기 + car 배열 활용
 		StudentService ss = new StudentService();
-		
-//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(""));
-		
-		
+
 		while (true) {
 			try {
 				int input = StudentUtils.next("1. 조회 2. 등록 3. 수정 4. 삭제 5. 종료", Integer.class, n -> n > 0 && n < 6,
 						"1~5사이의 값을 입력하세요");
 				switch (input) {
 				case 1:
+
 					ss.list();
+
 					break;
 				case 2:
+
 					ss.add();
+
 					ss.cloneAndSort();
 					break;
 				case 3:

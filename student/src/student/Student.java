@@ -1,5 +1,7 @@
 package student;
 
+import java.io.Serializable;
+
 // 학생 예제 > java beans 명세서에 맞게끔 수정
 // field 는 private, method는 public
 // getter, setter
@@ -9,7 +11,7 @@ package student;
 // 학번 중복 불허
 // 중간에 오류상황 발생 시 정지 되지 않게 하기
 
-public class Student implements Cloneable {
+public class Student implements Serializable {
 	private int no;
 	private String name;
 	private int kor;

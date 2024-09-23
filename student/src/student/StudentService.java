@@ -2,7 +2,11 @@ package student;
 
 import static student.StudentUtils.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +18,6 @@ public class StudentService {
 	private List<Student> noSortedStudents;
 	private List<Student> nameSortedStudents;
 
-	
 	{
 		students.add(new Student(1, "새똥이", 80, 90, 100));
 		students.add(new Student(2, "개똥이", 77, 66, 77));
@@ -22,13 +25,11 @@ public class StudentService {
 		students.add(new Student(4, "개똥이", 77, 66, 77));
 
 		cloneAndSort();
-		
+
 	}
-	
-//	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(""));
 
 	// 학생 등록
-	public void add() {
+	public void add() throws FileNotFoundException, IOException {
 
 		int no = next("학번", Integer.class, n -> findBy(n) == null, "중복되지 않는 학번을 입력하세요");
 		String name = next("이름", String.class, str -> str.matches("^[가-힣]{2,4}"), "올바른 이름을 입력하세요(한글, 2~4글자)");
@@ -38,10 +39,17 @@ public class StudentService {
 
 		students.add(new Student(no, name, kor, eng, mat));
 
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("학생들.txt"));
+		oos.writeObject(students);
 	}
 
 	// 학생 목록 조회
-	public void list() {
+	public void list() throws FileNotFoundException, IOException, ClassNotFoundException {
+
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("학생들.txt"));
+		List<Student> result = (List<Student>) ois.readObject();
+		students = result;
+
 		int input = next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, n -> n > 0 && n <= 4, "1이상 4이하의 값을 입력하세요");
 		List<Student> tmp = null;
 		switch (input) {
@@ -68,9 +76,10 @@ public class StudentService {
 	}
 
 	// 학생 이름, 점수 수정
-	public void modify() {
+	public void modify() throws FileNotFoundException, IOException, ClassNotFoundException {
 		// 1. 학번 입력
 		// 2. 학번을 통한 탐색(배열) >> 학생
+
 		Student s = findBy(next("학번", Integer.class, n -> findBy(n) != null, "입력한 학번은 존재하지 않습니다."));
 
 		String name = next("이름", String.class, str -> str.matches("^[가-힣]{2,4}"), "정확한 이름의 조건을 입력하세요");
@@ -83,13 +92,19 @@ public class StudentService {
 		s.setEng(eng);
 		s.setMat(mat);
 
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("학생들.txt"));
+		oos.writeObject(students);
 	}
 
 	// 학생 삭제
-	public void remove() {
+	public void remove() throws FileNotFoundException, IOException, ClassNotFoundException {
+
 		Student s = findBy(next("학번", Integer.class, n -> findBy(n) != null, "입력한 학번은 존재하지 않습니다."));
 
 		students.remove(s);
+
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("학생들.txt"));
+		oos.writeObject(students);
 
 	}
 
