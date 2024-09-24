@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Logic 기능수행
+@SuppressWarnings("unchecked")
 public class StudentService {
 	private List<Student> students = new ArrayList<Student>();
 	private List<Student> totalSortedStudents;
@@ -19,17 +20,26 @@ public class StudentService {
 	private List<Student> nameSortedStudents;
 
 	{
-		students.add(new Student(1, "새똥이", 80, 90, 100));
-		students.add(new Student(2, "개똥이", 77, 66, 77));
-		students.add(new Student(3, "새똥이", 80, 90, 100));
-		students.add(new Student(4, "개똥이", 77, 66, 77));
+
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data.ser"))) {
+			students = (List<Student>) ois.readObject();
+		} catch (FileNotFoundException e) {
+			students.add(new Student(1, "새똥이", 80, 90, 100));
+			students.add(new Student(2, "개똥이", 77, 66, 77));
+			students.add(new Student(3, "새똥이", 80, 90, 100));
+			students.add(new Student(4, "개똥이", 77, 66, 77));
+			System.out.println("파일 검색 실패, 초기화 더미 데이터 처리 완료");
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+
+		}
 
 		cloneAndSort();
 
 	}
 
 	// 학생 등록
-	public void add() throws FileNotFoundException, IOException {
+	public void add() {
 
 		int no = next("학번", Integer.class, n -> findBy(n) == null, "중복되지 않는 학번을 입력하세요");
 		String name = next("이름", String.class, str -> str.matches("^[가-힣]{2,4}"), "올바른 이름을 입력하세요(한글, 2~4글자)");
@@ -39,16 +49,10 @@ public class StudentService {
 
 		students.add(new Student(no, name, kor, eng, mat));
 
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("학생들.txt"));
-		oos.writeObject(students);
 	}
 
 	// 학생 목록 조회
-	public void list() throws FileNotFoundException, IOException, ClassNotFoundException {
-
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("학생들.txt"));
-		List<Student> result = (List<Student>) ois.readObject();
-		students = result;
+	public void list() {
 
 		int input = next("1. 입력순 2. 학번순 3. 이름순 4. 석차순", Integer.class, n -> n > 0 && n <= 4, "1이상 4이하의 값을 입력하세요");
 		List<Student> tmp = null;
@@ -76,7 +80,7 @@ public class StudentService {
 	}
 
 	// 학생 이름, 점수 수정
-	public void modify() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public void modify() {
 		// 1. 학번 입력
 		// 2. 학번을 통한 탐색(배열) >> 학생
 
@@ -92,19 +96,14 @@ public class StudentService {
 		s.setEng(eng);
 		s.setMat(mat);
 
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("학생들.txt"));
-		oos.writeObject(students);
 	}
 
 	// 학생 삭제
-	public void remove() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public void remove() {
 
 		Student s = findBy(next("학번", Integer.class, n -> findBy(n) != null, "입력한 학번은 존재하지 않습니다."));
 
 		students.remove(s);
-
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("학생들.txt"));
-		oos.writeObject(students);
 
 	}
 
@@ -144,6 +143,17 @@ public class StudentService {
 		nameSortedStudents.sort((o1, o2) -> o1.getName().hashCode() - o2.getName().hashCode());
 		totalSortedStudents.sort((o1, o2) -> o2.total() - o1.total());
 
+		// 저장 호출
+		save();
+
+	}
+
+	public void save() {
+		try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("data.ser"))) {
+			stream.writeObject(students);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

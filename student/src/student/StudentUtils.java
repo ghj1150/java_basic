@@ -6,11 +6,11 @@ import java.util.function.Predicate;
 public class StudentUtils {
 	static Scanner scanner = new Scanner(System.in);
 
-	private static String nextLine(String msg) {
-		System.out.println(msg);
-		System.out.print("> ");
-		return scanner.nextLine();
-	}
+//	private static String nextLine(String msg) {
+//		System.out.println(msg);
+//		System.out.print("> ");
+//		return scanner.nextLine();
+//	}
 
 //	private static int nextInt(String msg) {
 //		return Integer.parseInt(nextLine(msg));

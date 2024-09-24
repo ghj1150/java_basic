@@ -11,7 +11,11 @@ import java.io.Serializable;
 // 학번 중복 불허
 // 중간에 오류상황 발생 시 정지 되지 않게 하기
 
-public class Student implements Serializable {
+@SuppressWarnings("serial")
+public class Student implements Cloneable, Serializable {
+	/**
+	 * 
+	 */
 	private int no;
 	private String name;
 	private int kor;

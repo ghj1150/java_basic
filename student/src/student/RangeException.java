@@ -1,5 +1,6 @@
 package student;
 
+@SuppressWarnings("serial")
 public class RangeException extends RuntimeException {
 	int start;
 	int end;
