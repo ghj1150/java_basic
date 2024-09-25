@@ -6,7 +6,7 @@ public class ForEx2 {
 		for(int i = 1; i <= 100; i++) {
 			sum += i;
 			System.out.printf("i : %d, sum : %d\n", i, sum);
-		}
+		} 
 		System.out.println("합계 : " + sum);
 	}
 }
