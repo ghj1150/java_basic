@@ -1,5 +1,5 @@
 package lesson15_lambda;
-
+ 
 import java.util.function.Function;
 
 public class LambdaEx {
