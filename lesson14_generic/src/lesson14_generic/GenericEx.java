@@ -1,5 +1,5 @@
 package lesson14_generic;
-
+ 
 public class GenericEx {
 	public static void main(String[] args) {
 		Box<Integer> box = new Box<>();
