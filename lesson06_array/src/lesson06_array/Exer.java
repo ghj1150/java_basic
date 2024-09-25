@@ -1,7 +1,7 @@
 package lesson06_array;
 
 import java.util.Scanner;
-
+ 
 public class Exer {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
