@@ -3,7 +3,7 @@ package lesson03_variable;
 public class CharType {
 	public static void main(String[] args) {
 		char a = 'A';
-		
+		 
 		System.out.println("a:" + a);
 		
 		int b = a;
