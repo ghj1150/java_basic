@@ -4,7 +4,7 @@ public class Car {
 	String color;
 	String company;
 	String type;
-	
+	 
 	// 메서드
 	/**
 	 * 전진하는 메서드
