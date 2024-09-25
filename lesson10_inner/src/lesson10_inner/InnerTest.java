@@ -7,7 +7,7 @@ public class InnerTest {
 		Outer.SInner sInner = new Outer.SInner();
 	}
 }
-
+ 
 class Outer {
 	int i;
 	static int si;
