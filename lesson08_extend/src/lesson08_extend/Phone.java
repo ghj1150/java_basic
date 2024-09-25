@@ -4,7 +4,7 @@ public class Phone {
 	String name;
 	String color;
 	String company;
-
+ 
 	public Phone() {
 	}
 
