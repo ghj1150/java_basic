@@ -9,3 +9,4 @@ public class ExceptionEx01 {
 		System.out.println(5);
 	}
 }
+ 
